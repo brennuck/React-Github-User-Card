@@ -1,9 +1,10 @@
 import React, { setState } from 'react';
 import axios from 'axios';
+import Usercard from './Components/Usercard';
 
 class App extends React.Component {
   state = {
-    users: []
+    users: {}
   };
 
   componentDidMount() {
@@ -11,6 +12,7 @@ class App extends React.Component {
     .then(res => {
       console.log("Response" ,res);
       this.setState({
+        ...this.state,
         users: res.data
       })
     })
@@ -20,9 +22,10 @@ class App extends React.Component {
   }
 
   render() {
+    console.log( "Hello" ,this.state)
     return (
       <div>
-        <h1>hello</h1>
+        <Usercard users={this.state.users} />
       </div>
     )
   }
